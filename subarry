@@ -1,0 +1,19 @@
+class Solution(object):
+    def subarraySum(self, nums, k):
+        
+        map={0:1}
+        count=prefixSum=0
+        
+        for x in nums:
+            
+            prefixSum+=x
+            
+            if prefixSum-k in map:
+                count+=map[prefixSum-k]
+            
+            if prefixSum in map:
+                map[prefixSum]+=1
+            else:
+                map[prefixSum]=1
+        
+        return count
