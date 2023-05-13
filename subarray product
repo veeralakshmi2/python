@@ -1,0 +1,12 @@
+class Solution(object):
+    def numSubarrayProductLessThanK(self, nums, k):
+        product = 1
+        left = 0
+        ans = 0
+        for idx, n in enumerate(nums):
+            product *= n
+            while product >= k and left <= idx:
+                product //= nums[left]
+                left += 1
+            ans += idx - left + 1
+        return ans
